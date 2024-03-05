@@ -21,6 +21,8 @@ const jobsRouter = require("./routes/jobs");
 const connectDB = require("./db/connect");
 const authenticateUser = require("./middleware/authentication");
 
+app.use(express.json());
+
 app.get("/", (req, res) => {
   res.send("jobs api");
 });
@@ -35,7 +37,6 @@ app.use(
     max: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes).
   })
 );
-app.use(express.json());
 app.use(helmet());
 app.use(cors());
 app.use(xss());
